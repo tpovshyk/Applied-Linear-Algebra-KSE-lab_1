@@ -5,12 +5,11 @@ from visualization import plot_objects, plot_3d_object, print_matrix
 
 def program_p1():
     while True:
-        print(" Об'єкт для трансформації:")
-        print("")
-        print("1. Трикутник")
-        print("2. Зірка")
-        print("3. Піраміда")
-        print("")
+        print(""" 
+Об'єкт для трансформації:
+1. Трикутник
+2. Зірка
+3. Піраміда """)
         choice = input("Введіть номер об'єкта (1/2/3): ")
 
         if choice == '1':
@@ -22,22 +21,20 @@ def program_p1():
             obj = np.array([[0, 0, 0], [1, 0, 0], [0.5, 1, 0], [0.5, 0.5, 1], [0, 0, 0]])
 
         if choice == '1' or choice == '2':
-            print("")
-            print("Трансформації:")
-            print("1. Обертання (кут у градусах)")
-            print("2. Масштабування (коефіцієнт: додатнє дійсне число)")
-            print("3. Віддзеркалення (вісь: x або y для 2D)")
-            print("4. Нахил (коефіцієнт: дійсне число, вісь: x або y для 2D)")
-            print("5. Кастомна матриця трансформації (матриця 2x2)")
-            print("")
+            print("""
+Трансформації:
+1. Обертання (кут у градусах)
+2. Масштабування (коефіцієнт: додатнє дійсне число)
+3. Віддзеркалення (вісь: x або y для 2D)
+4. Нахил (коефіцієнт: дійсне число, вісь: x або y для 2D)
+5. Кастомна матриця трансформації (матриця 2x2)""")
             transform_choice = input("Введіть першу літеру трансформації (O/M/B/H/K): ")
         else:
-            print("")
-            print("Трансформації для 3D:")
-            print("1. Обертання (кут у градусах)")
-            print("2. Масштабування (коефіцієнт: додатнє дійсне число)")
-            print("3. Кастомна матриця трансформації (матриця 3x3)")
-            print("")
+            print("""
+Трансформації:
+1. Обертання (кут у градусах)
+2. Масштабування (коефіцієнт: додатнє дійсне число)
+3. Кастомна матриця трансформації (матриця 3x3)""")
             transform_choice = input("Введіть першу літеру трансформації (O/M/K): ")
 
         if transform_choice == 'O':
@@ -54,14 +51,15 @@ def program_p1():
 
         elif transform_choice == 'M':
             if choice == '1' or choice == '2':
-                factor = float(input("Введіть коефіцієнт масштабування: "))
+                factor = list(
+                    map(float, input("Введіть коефіцієнти масштабування для осей x, y через пробіл: ").split()))
                 transformed_obj = scale(obj, factor)
                 print_matrix(transformed_obj, 'Scaled Object Matrix')
                 plot_objects([transformed_obj], ['Scaled Object'])
             else:
-                factors = list(
+                factor = list(
                     map(float, input("Введіть коефіцієнти масштабування для осей x, y, z через пробіл: ").split()))
-                transformed_obj = scale_3d(obj, factors)
+                transformed_obj = scale_3d(obj, factor)
                 print_matrix(transformed_obj, 'Scaled Object Matrix')
                 plot_3d_object(transformed_obj, 'Scaled Object')
 

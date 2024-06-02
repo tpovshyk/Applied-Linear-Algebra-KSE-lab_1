@@ -7,7 +7,7 @@ def rotate(points, angle):
 
 
 def scale(points, factor):
-    scaling_matrix = np.array([[factor, 0], [0, factor]])
+    scaling_matrix = np.array([[factor[0], 0], [0, factor[1]]])
     return points @ scaling_matrix.T
 
 
@@ -39,8 +39,8 @@ def rotate_3d(points, angle, axis):
     return points @ rotation_matrix.T
 
 
-def scale_3d(points, factors):
-    scaling_matrix = np.diag(factors)
+def scale_3d(points, factor):
+    scaling_matrix = np.diag(factor)
     return points @ scaling_matrix.T
 
 
